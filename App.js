@@ -18,10 +18,10 @@ function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
-        headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+        headerStyle: { backgroundColor: 'black' },
         headerTintColor: 'white',
-        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-        tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        tabBarStyle: { backgroundColor: 'black' },
+        tabBarActiveTintColor: 'white',
         headerRight: ({ tintColor }) => (
           <IconButton
             icon="add"
@@ -38,13 +38,24 @@ function ExpensesOverview() {
         name="RecentExpenses"
         component={RecentExpenses}
         options={{
+          title: 'Home Page',
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-sharp" size={size} color={color} />
+          ),
+        }}
+      />
+      {/* <BottomTabs.Screen
+        name="RecentExpenses"
+        component={RecentExpenses}
+        options={{
           title: 'Recent Expenses',
           tabBarLabel: 'Recent',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="hourglass" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
       <BottomTabs.Screen
         name="AllExpenses"
         component={AllExpenses}
@@ -68,7 +79,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+              headerStyle: { backgroundColor: 'black' },
               headerTintColor: 'white',
             }}
           >
