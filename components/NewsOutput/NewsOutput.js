@@ -6,8 +6,8 @@ function NewsOutput({ fallbackText }) {
 
   return (
     <View style={styles.container}>
-      {/* {content} */}
-      <WebView source={{ uri: 'https://google.com' }} />
+      {content}
+      {/* <WebView source={{ uri: 'https://google.com' }} /> */}
     </View>
   );
 }

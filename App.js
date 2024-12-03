@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import ManageExpense from './screens/ManageExpense';
+import ManageWebView from './screens/ManageWebView';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import IconButton from './components/UI/IconButton';
@@ -14,7 +15,7 @@ import News from './screens/News';
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
-function ExpensesOverview() {
+function QuantToolsOverview() {
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
@@ -28,7 +29,9 @@ function ExpensesOverview() {
             size={24}
             color={tintColor}
             onPress={() => {
-              navigation.navigate('ManageExpense');
+              navigation.navigate('ManageWebView', {
+                webViewUrl: 'https://google.com'
+              });
             }}
           />
         ),
@@ -84,13 +87,20 @@ export default function App() {
             }}
           >
             <Stack.Screen
-              name="ExpensesOverview"
-              component={ExpensesOverview}
+              name="QuantToolsOverview"
+              component={QuantToolsOverview}
               options={{ headerShown: false }}
             />
             <Stack.Screen
               name="ManageExpense"
               component={ManageExpense}
+              options={{
+                presentation: 'modal',
+              }}
+            />
+            <Stack.Screen
+              name="ManageWebView"
+              component={ManageWebView}
               options={{
                 presentation: 'modal',
               }}
