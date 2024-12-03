@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 function NewsOutput({ fallbackText }) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
   return (
     <View style={styles.container}>
-      {content}
+      {/* {content} */}
+      <WebView source={{ uri: 'https://google.com' }} />
     </View>
   );
 }
