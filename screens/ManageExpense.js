@@ -27,16 +27,7 @@ function ManageExpense({ route, navigation }) {
   }
 
   function confirmHandler() {
-    if (isEditing) {
-      newsContext.updateExpense(
-        editedExpenseId,
-        {
-          description: 'Test!!!!',
-          amount: 29.99,
-          date: new Date('2022-05-20'),
-        }
-      );
-    } else {
+    if (!isEditing) {
       newsContext.addExpense({
         description: 'Test',
         amount: 19.99,
@@ -51,9 +42,6 @@ function ManageExpense({ route, navigation }) {
       <View style={styles.buttons}>
         <Button style={styles.button} mode="flat" onPress={cancelHandler}>
           Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
-          {isEditing ? 'Update' : 'Add'}
         </Button>
       </View>
       {isEditing && (
