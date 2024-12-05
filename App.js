@@ -9,7 +9,7 @@ import ManageWebView from './screens/ManageWebView';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import IconButton from './components/UI/IconButton';
-import ExpensesContextProvider from './store/expenses-context';
+import NewsContextProvider from './store/NewsContext';
 import News from './screens/News';
 
 const Stack = createNativeStackNavigator();
@@ -78,7 +78,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <ExpensesContextProvider>
+      <NewsContextProvider>
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
@@ -107,7 +107,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </ExpensesContextProvider>
+      </NewsContextProvider>
     </>
   );
 }

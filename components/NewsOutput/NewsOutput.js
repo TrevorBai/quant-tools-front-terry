@@ -1,8 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { WebView } from 'react-native-webview';
+import NewsList from './NewsList';
 
-function NewsOutput({ fallbackText }) {
+function NewsOutput({ expenses, fallbackText }) {
   let content = <Text style={styles.infoText}>{fallbackText}</Text>;
+
+  if (expenses.length > 0) {
+    content = <NewsList news={expenses} />;
+  }
 
   return (
     <View style={styles.container}>
