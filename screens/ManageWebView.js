@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 function ManageWebView({ route, navigation }) {
-
   const webViewUrl = route.params?.webViewUrl;
 
   useLayoutEffect(() => {

@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import ManageExpense from './screens/ManageExpense';
 import ManageWebView from './screens/ManageWebView';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
@@ -90,13 +89,6 @@ export default function App() {
               name="QuantToolsOverview"
               component={QuantToolsOverview}
               options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ManageExpense"
-              component={ManageExpense}
-              options={{
-                presentation: 'modal',
-              }}
             />
             <Stack.Screen
               name="ManageWebView"
