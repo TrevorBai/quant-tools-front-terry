@@ -24,7 +24,6 @@ const DUMMY_NEWS = [
 export const NewsContext = createContext({
   expenses: [],
   addExpense: ({ description, amount, date }) => {},
-  deleteExpense: (id) => {},
 });
 
 function expensesReducer(state, action) {
@@ -32,8 +31,6 @@ function expensesReducer(state, action) {
     case 'ADD':
       const id = new Date().toString() + Math.random().toString();
       return [{ ...action.payload, id: id }, ...state];
-    case 'DELETE':
-      return state.filter((expense) => expense.id !== action.payload);
     default:
       return state;
   }
@@ -46,14 +43,9 @@ function NewsContextProvider({ children }) {
     dispatch({ type: 'ADD', payload: expenseData });
   }
 
-  function deleteExpense(id) {
-    dispatch({ type: 'DELETE', payload: id });
-  }
-
   const value = {
     expenses: expensesState,
-    addExpense: addExpense,
-    deleteExpense: deleteExpense,
+    addExpense: addExpense
   };
 
   return (

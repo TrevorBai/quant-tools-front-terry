@@ -1,39 +1,16 @@
-import { useContext, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-
 import Button from '../components/UI/Button';
-import IconButton from '../components/UI/IconButton';
-import { NewsContext } from '../store/NewsContext';
 
 function ManageExpense({ route, navigation }) {
-  const newsContext = useContext(NewsContext);
-
-  const editedExpenseId = route.params?.expenseId;
-  const isEditing = !!editedExpenseId;
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? 'Edit Expense' : 'Add Expense',
+      title: 'Edit Expense',
     });
-  }, [navigation, isEditing]);
-
-  function deleteExpenseHandler() {
-    newsContext.deleteExpense(editedExpenseId);
-    navigation.goBack();
-  }
+  }, [navigation]);
 
   function cancelHandler() {
-    navigation.goBack();
-  }
-
-  function confirmHandler() {
-    if (!isEditing) {
-      newsContext.addExpense({
-        description: 'Test',
-        amount: 19.99,
-        date: new Date('2022-05-19'),
-      });
-    }
     navigation.goBack();
   }
 
@@ -44,16 +21,6 @@ function ManageExpense({ route, navigation }) {
           Cancel
         </Button>
       </View>
-      {isEditing && (
-        <View style={styles.deleteContainer}>
-          <IconButton
-            icon="trash"
-            color={'red'}
-            size={36}
-            onPress={deleteExpenseHandler}
-          />
-        </View>
-      )}
     </View>
   );
 }
