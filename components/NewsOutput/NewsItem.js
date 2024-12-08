@@ -16,7 +16,7 @@ function NewsItem({ webViewUrl, description, amount, date }) {
       onPress={expensePressHandler}
       style={({ pressed }) => pressed && styles.pressed}
     >
-      <View style={styles.expenseItem}>
+      <View style={styles.newsItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>
             {description}
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     pressed: {
       opacity: 0.75,
     },
-    expenseItem: {
+    newsItem: {
       padding: 12,
       marginVertical: 8,
       backgroundColor: 'black',

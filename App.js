@@ -5,8 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import ManageWebView from './screens/ManageWebView';
-import RecentExpenses from './screens/RecentExpenses';
-import AllExpenses from './screens/AllExpenses';
+import HomePageContents from './screens/HomePageContents';
 import IconButton from './components/UI/IconButton';
 import NewsContextProvider from './store/NewsContext';
 import News from './screens/News';
@@ -37,8 +36,8 @@ function QuantToolsOverview() {
       })}
     >
       <BottomTabs.Screen
-        name="RecentExpenses"
-        component={RecentExpenses}
+        name="HomePageContents"
+        component={HomePageContents}
         options={{
           title: 'Home Page',
           tabBarLabel: 'Home',
@@ -55,17 +54,6 @@ function QuantToolsOverview() {
           tabBarLabel: 'News',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="newspaper" size={size} color={color} />
-          ),
-        }}
-      />
-      <BottomTabs.Screen
-        name="AllExpenses"
-        component={AllExpenses}
-        options={{
-          title: 'All Expenses',
-          tabBarLabel: 'All Expenses',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="calendar" size={size} color={color} />
           ),
         }}
       />
