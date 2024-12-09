@@ -7,7 +7,7 @@ function News() {
 
   return (
     <NewsOutput
-      expenses={newsContext.expenses}
+      expenses={newsContext.news}
       fallbackText="Put a list of Webviews here."
     />
   );

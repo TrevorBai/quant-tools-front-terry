@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext } from 'react';
 
 const DUMMY_NEWS = [
   {
@@ -21,35 +21,12 @@ const DUMMY_NEWS = [
   }
 ];
 
-export const NewsContext = createContext({
-  expenses: [],
-  addExpense: ({ description, amount, date }) => {},
-});
-
-function expensesReducer(state, action) {
-  switch (action.type) {
-    case 'ADD':
-      const id = new Date().toString() + Math.random().toString();
-      return [{ ...action.payload, id: id }, ...state];
-    default:
-      return state;
-  }
-}
+// A context without any actions yet
+export const NewsContext = createContext({news: []});
 
 function NewsContextProvider({ children }) {
-  const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_NEWS);
-
-  function addExpense(expenseData) {
-    dispatch({ type: 'ADD', payload: expenseData });
-  }
-
-  const value = {
-    expenses: expensesState,
-    addExpense: addExpense
-  };
-
   return (
-    <NewsContext.Provider value={value}>
+    <NewsContext.Provider value={{news: DUMMY_NEWS}}>
       {children}
     </NewsContext.Provider>
   );
