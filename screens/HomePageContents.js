@@ -1,10 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 function HomePageContents() {
 
   return (
     <View style={styles.container}>
-      <p style={styles.infoText}>Home page content</p>
+      <Text style={styles.infoText}>Home page content</Text>
     </View>
   );
 }

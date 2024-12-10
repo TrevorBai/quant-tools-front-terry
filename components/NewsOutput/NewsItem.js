@@ -1,9 +1,15 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getFormattedDate } from '../../util/date';
 
-function NewsItem({ webViewUrl, description, amount, date }) {
+function NewsItem({ webViewUrl, newsDescription, thumbnailKey, date }) {
   const navigation = useNavigation();
+
+  const thumbnailImages = {
+    yahooFinanceThumbnail: require('../../assets/images/YahooFinance.png'),
+    googleThumbnail: require('../../assets/images/Google.png'),
+    xDotComThumbnail: require('../../assets/images/XDotCom.jpeg'),
+  };
 
   function expensePressHandler() {
     navigation.navigate('ManageWebView', {
@@ -18,13 +24,16 @@ function NewsItem({ webViewUrl, description, amount, date }) {
     >
       <View style={styles.newsItem}>
         <View>
-          <Text style={[styles.textBase, styles.description]}>
-            {description}
+          <Text style={[styles.textBase, styles.newsDescription]}>
+            {newsDescription}
           </Text>
           <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
         </View>
-        <View style={styles.amountContainer}>
-          <Text style={styles.amount}>{amount.toFixed(2)}</Text>
+        <View style={styles.thumbnailContainer}>
+          <Image 
+            source={thumbnailImages[thumbnailKey]}
+            style={{ width: 80, height: 80, borderRadius: 5 }}
+          />
         </View>
       </View>
     </Pressable>
@@ -53,12 +62,12 @@ const styles = StyleSheet.create({
     textBase: {
       color: 'white',
     },
-    description: {
+    newsDescription: {
       fontSize: 16,
       marginBottom: 4,
       fontWeight: 'bold',
     },
-    amountContainer: {
+    thumbnailContainer: {
       paddingHorizontal: 12,
       paddingVertical: 4,
       backgroundColor: 'black',
@@ -66,9 +75,5 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 4,
       minWidth: 80,
-    },
-    amount: {
-      color: 'white',
-      fontWeight: 'bold',
-    },
+    }
   });

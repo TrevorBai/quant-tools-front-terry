@@ -3,20 +3,20 @@ import { createContext } from 'react';
 const DUMMY_NEWS = [
   {
     id: 'e1',
-    description: 'A pair of shoes',
-    amount: 59.99,
+    newsDescription: 'Yahoo Finance',
+    thumbnailKey: 'yahooFinanceThumbnail',
     date: new Date('2021-12-19'),
   },
   {
     id: 'e2',
-    description: 'A pair of trousers',
-    amount: 89.29,
+    newsDescription: 'Google',
+    thumbnailKey: 'googleThumbnail',
     date: new Date('2022-01-05'),
   },
   {
     id: 'e3',
-    description: 'Some bananas',
-    amount: 5.99,
+    newsDescription: 'X.com',
+    thumbnailKey: 'xDotComThumbnail',
     date: new Date('2021-12-01'),
   }
 ];
