@@ -13,7 +13,7 @@ function NewsItem({ webViewUrl, newsDescription, thumbnailKey, date }) {
 
   function expensePressHandler() {
     navigation.navigate('ManageWebView', {
-      webViewUrl: 'https://google.com'
+      webViewUrl: webViewUrl
     });
   }
 

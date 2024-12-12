@@ -2,19 +2,22 @@ import { createContext } from 'react';
 
 const DUMMY_NEWS = [
   {
-    id: 'e1',
+    id: '1',
+    webViewUrl: 'https://finance.yahoo.com/',
     newsDescription: 'Yahoo Finance',
     thumbnailKey: 'yahooFinanceThumbnail',
     date: new Date('2021-12-19'),
   },
   {
-    id: 'e2',
+    id: '2',
+    webViewUrl: 'https://google.com',
     newsDescription: 'Google',
     thumbnailKey: 'googleThumbnail',
     date: new Date('2022-01-05'),
   },
   {
-    id: 'e3',
+    id: '3',
+    webViewUrl: 'https://x.com/',
     newsDescription: 'X.com',
     thumbnailKey: 'xDotComThumbnail',
     date: new Date('2021-12-01'),
