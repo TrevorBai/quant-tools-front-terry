@@ -6,21 +6,21 @@ const DUMMY_NEWS = [
     webViewUrl: 'https://finance.yahoo.com/',
     newsDescription: 'Yahoo Finance',
     thumbnailKey: 'yahooFinanceThumbnail',
-    date: new Date('2021-12-19'),
+    publishTime: new Date('2024-12-11T11:51:00').toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
   },
   {
     id: '2',
     webViewUrl: 'https://google.com',
     newsDescription: 'Google',
     thumbnailKey: 'googleThumbnail',
-    date: new Date('2022-01-05'),
+    publishTime: new Date('2024-12-11T08:03:00').toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
   },
   {
     id: '3',
     webViewUrl: 'https://x.com/',
     newsDescription: 'X.com',
     thumbnailKey: 'xDotComThumbnail',
-    date: new Date('2021-12-01'),
+    publishTime: new Date('2024-12-11T23:39:00').toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
   }
 ];
 

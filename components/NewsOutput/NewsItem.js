@@ -1,8 +1,7 @@
 import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { getFormattedDate } from '../../util/date';
 
-function NewsItem({ webViewUrl, newsDescription, thumbnailKey, date }) {
+function NewsItem({ webViewUrl, newsDescription, thumbnailKey, publishTime }) {
   const navigation = useNavigation();
 
   const thumbnailImages = {
@@ -27,7 +26,7 @@ function NewsItem({ webViewUrl, newsDescription, thumbnailKey, date }) {
           <Text style={[styles.textBase, styles.newsDescription]}>
             {newsDescription}
           </Text>
-          <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+          <Text style={styles.textBase}>{publishTime}</Text>
         </View>
         <View style={styles.thumbnailContainer}>
           <Image 
@@ -60,6 +59,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.4,
     },
     textBase: {
+      paddingTop: 20,
       color: 'white',
     },
     newsDescription: {
