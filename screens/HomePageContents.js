@@ -1,10 +1,10 @@
 import { StyleSheet, View, Text } from 'react-native';
+import StockPriceGraph from '../components/StockPriceGraph';
 
 function HomePageContents() {
-
   return (
     <View style={styles.container}>
-      <Text style={styles.infoText}>Home page content</Text>
+      <Text style={styles.infoText}>Home page content, again</Text>
     </View>
   );
 }
