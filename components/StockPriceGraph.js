@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { useState, useEffect } from 'react';
-// import { LineChart } from 'react-native-svg-charts';
+import { LineChart } from 'react-native-chart-kit';
 import * as shape from 'd3-shape';
 import { fetchStockData } from '../utils/stockData';
 

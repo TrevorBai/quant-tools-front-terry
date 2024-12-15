@@ -1,10 +1,11 @@
 import { StyleSheet, View, Text } from 'react-native';
-import StockPriceGraph from '../components/StockPriceGraph';
+import BasicGraph from '../components/BasicGraph';
 
 function HomePageContents() {
   return (
     <View style={styles.container}>
-      <Text style={styles.infoText}>Home page content, again</Text>
+      <Text style={styles.infoText}>Example graph</Text>
+      <BasicGraph/>
     </View>
   );
 }
