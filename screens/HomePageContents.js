@@ -5,7 +5,7 @@ function HomePageContents() {
   return (
     <View style={styles.container}>
       <Text style={styles.infoText}>Example graph</Text>
-      <BasicGraph/>
+      <BasicGraph symbol="TSLA"/>
     </View>
   );
 }

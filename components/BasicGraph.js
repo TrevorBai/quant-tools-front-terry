@@ -1,23 +1,44 @@
 import { View, Dimensions } from 'react-native';
+import { useState, useEffect } from 'react';
 import { LineChart } from 'react-native-chart-kit';
+import { fetchStockData } from '../utils/stockData';
 
-const BasicGraph = () =>
-{
+const BasicGraph = ({ symbol }) => {
+  const [data, setData] = useState([]);
+
+  console.log("I am here! Seriously?");
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const stockData = await fetchStockData(symbol); 
+      console.log("Fetched data:", stockData);
+      const prices = Object.values(stockData).map((day) => parseFloat(day['4. close'])).reverse();
+      console.log("Closing prices:", prices);
+      setData(prices.slice(-6)); // Last 6 days
+    };
+    fetchData();
+  }, [symbol]);
+
+  // Debugging updated `data` state
+  // useEffect(() => {
+  //   console.log("Updated data:", data);
+  // }, [data]);
+
+  const dataSet = {
+    labels: ['12-09', '12-10', '12-11', '12-12', '12-13', '12-16'],
+    datasets: [{data: data}]
+  };
+
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
         <LineChart
           data={{
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [
-              {
-                data: [20, 45, 28, 80, 99, 43],
-              },
-            ],
+            labels: ['12-09', '12-10', '12-11', '12-12', '12-13', '12-16'],
+            datasets: [{data: data}]
           }}
           width={Dimensions.get('window').width * 0.9} // Adjust for screen width
           height={220}
           yAxisLabel="$"
-          yAxisSuffix="k"
           chartConfig={{
             backgroundColor: '#000000',
             backgroundGradientFrom: '#000000',
@@ -34,15 +55,33 @@ const BasicGraph = () =>
                 stroke: 'transparent', // Makes grid lines transparent
             },
             propsForDots: {
-              r: '0'
+              r: '5'
+            },
+            propsForBackgroundLines: {
+              stroke: '#ccc', // Grid color
+              strokeWidth: 1, // Grid line thickness
             },
           }}
           horizontalOffset={0} // Reduce extra space on sides
-          fromZero={true} // Ensures Y-axis starts from 0
           style={{
             marginVertical: 8,
             borderRadius: 16,
           }}
+          // renderDotContent={({ x, y, index }) => (
+          //   <Text
+          //     key={index}
+          //     style={{
+          //       position: 'absolute',
+          //       left: x - 10, // Adjust position horizontally
+          //       top: y - 20,  // Adjust position vertically
+          //       fontSize: 10,
+          //       color: 'white',
+          //       fontWeight: 'bold',
+          //     }}
+          //   >
+          //     {data[index]} {/* Show the data value */}
+          //   </Text>
+          // )}
         />
     </View>
   );
