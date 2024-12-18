@@ -4,7 +4,7 @@ import BasicGraph from '../components/BasicGraph';
 function HomePageContents() {
   return (
     <View style={styles.container}>
-      <Text style={styles.infoText}>Example graph</Text>
+      <Text style={styles.infoText}>Tesla stock graph</Text>
       <BasicGraph symbol="TSLA"/>
     </View>
   );
