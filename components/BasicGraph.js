@@ -5,6 +5,7 @@ import { fetchStockData } from '../utils/stockData';
 
 const BasicGraph = ({ symbol }) => {
   const [data, setData] = useState([]);
+  const [dates, setDates] = useState([]);
 
   console.log("I am here! Seriously?");
   
@@ -13,16 +14,20 @@ const BasicGraph = ({ symbol }) => {
       const stockData = await fetchStockData(symbol); 
       console.log("Fetched data:", stockData);
       const prices = Object.values(stockData).map((day) => parseFloat(day['4. close'])).reverse();
+      const dates = Object.keys(stockData).map(date => date.slice(-5)).reverse();
+      console.log("Closing dates:", dates);
       console.log("Closing prices:", prices);
-      setData(prices.slice(-6)); // Last 6 days
+      // TODO: Maybe I could merge the 2 setStates into 1 setState?
+      setData(prices);
+      setDates(dates);
     };
     fetchData();
   }, [symbol]);
 
   const chartData = {
-    // Note that the dates are not consecutively, since markets are not open at weekends
-    // TODO: Need to convert hardcoded date into dynamic dates from fetched data.
-    labels: ['12-10', '12-11', '12-12', '12-13', '12-16', '12-17'], 
+    labels: dates.map((label, index) => 
+      index % 5 === 0 ? label : ''
+    ), 
     datasets: [{data: data}]
   };
 
@@ -79,7 +84,7 @@ const BasicGraph = ({ symbol }) => {
             marginVertical: 8,
             borderRadius: 16,
           }}
-          renderDotContent = {renderDotContent}     
+          // renderDotContent = {renderDotContent}     
         />
     </View>
   );
