@@ -4,8 +4,7 @@ import { LineChart } from 'react-native-chart-kit';
 import { fetchStockData } from '../utils/stockData';
 
 const BasicGraph = ({ symbol }) => {
-  const [data, setData] = useState([]);
-  const [dates, setDates] = useState([]);
+  const [chartData, setChartData] = useState({ prices: [], dates: [] });
 
   console.log("I am here! Seriously?");
   
@@ -17,19 +16,10 @@ const BasicGraph = ({ symbol }) => {
       const dates = Object.keys(stockData).map(date => date.slice(-5)).reverse();
       console.log("Closing dates:", dates);
       console.log("Closing prices:", prices);
-      // TODO: Maybe I could merge the 2 setStates into 1 setState?
-      setData(prices);
-      setDates(dates);
+      setChartData({ prices: prices, dates: dates });
     };
     fetchData();
   }, [symbol]);
-
-  const chartData = {
-    labels: dates.map((label, index) => 
-      index % 5 === 0 ? label : ''
-    ), 
-    datasets: [{data: data}]
-  };
 
   const chartConfig = {
     backgroundColor: '#000000',
@@ -67,14 +57,17 @@ const BasicGraph = ({ symbol }) => {
         fontWeight: 'bold',
       }}
     >
-      {chartData.datasets[0].data[index]}
+      {chartData.prices[index]}
     </Text>
   );
 
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
         <LineChart
-          data={chartData}
+          data={{
+            labels: chartData.dates.map((label, index) => index % 5 === 0 ? label : ''),
+            datasets: [{ data: chartData.prices }]
+          }}
           width={Dimensions.get('window').width * .9} // Adjust for screen width
           height={220}
           yAxisLabel="$"
