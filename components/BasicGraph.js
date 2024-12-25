@@ -10,13 +10,27 @@ const BasicGraph = ({ symbol }) => {
   
   useEffect(() => {
     const fetchData = async () => {
-      const stockData = await fetchStockData(symbol); 
-      console.log("Fetched data:", stockData);
-      const prices = Object.values(stockData).map((day) => parseFloat(day['4. close'])).reverse();
-      const dates = Object.keys(stockData).map(date => date.slice(-5)).reverse();
-      console.log("Closing dates:", dates);
-      console.log("Closing prices:", prices);
-      setChartData({ prices: prices, dates: dates });
+      try {
+        const stockData = await fetchStockData(symbol); 
+        // console.log("Fetched data:", stockData);
+        const prices = Object.values(stockData)
+          .map(data => parseFloat(data['4. close']))
+          .filter(price => !isNaN(price) && isFinite(price))
+          .reverse();
+        console.log("Closing prices:", prices);
+
+        const dates = Object.keys(stockData).map(date => date.slice(-5)).reverse();
+        console.log("Closing dates:", dates);
+        if (prices.length === 0 || dates.length === 0) {
+          console.error("No valid stock data found for symbol:", symbol);
+          return;
+        }
+
+        setChartData({ prices: prices, dates: dates });
+      }
+      catch (error) {
+        console.error("Error fetching stock data:", error);
+      }
     };
     fetchData();
   }, [symbol]);
@@ -66,10 +80,13 @@ const BasicGraph = ({ symbol }) => {
         <LineChart
           data={{
             labels: chartData.dates.map((label, index) => index % 5 === 0 ? label : ''),
+            // labels: [1, 2, 3],
             datasets: [{ data: chartData.prices }]
+            // datasets: [{ data: [1, 2, 3]}]
           }}
           width={Dimensions.get('window').width * .9} // Adjust for screen width
-          height={220}
+          height={200}  // different height could cause an M -Infinite ... error,
+          // I think it's about rendering of the graph, not a big deal. 
           yAxisLabel="$"
           chartConfig={chartConfig}
           horizontalOffset={0} // Reduce extra space on sides

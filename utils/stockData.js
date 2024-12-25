@@ -17,7 +17,7 @@ export const fetchStockData = async (symbol) => {
         oneMonthData[date] = timeSeries[date];
       }
     }
-    console.log('One month data:', oneMonthData); // This will contain roughly 1 month's data
+    // console.log('One month data:', oneMonthData); // This will contain roughly 1 month's data
     return oneMonthData;
   } catch (error) {
     console.error('Error fetching stock data:', error);
